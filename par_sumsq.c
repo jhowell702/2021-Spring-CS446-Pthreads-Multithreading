@@ -1,11 +1,3 @@
-/*
- * sumsq.c
- *
- * CS 446.646 Project 1 (Pthreads)
- *
- * Compile with --std=c99
- */
-
 #include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -22,7 +14,6 @@ bool done = false;
 bool multiThreading = true;
 
 ////////////////////////////////////////////////////////
-
 
 pthread_mutex_t data_lock = PTHREAD_MUTEX_INITIALIZER;
 
@@ -107,44 +98,28 @@ void *workerThread(void *arguments){
         }else{
         
             return 0;
-        
         }
 
-    
     }
     
-
-
 }
 
 
 ////////////////////////////////////////////////////////
 
-/*
- * update global aggregate variables given a number
- */
 void calculate_square(long number)
 {
-
-  // calculate the square
   long the_square = number * number;
-
-
-  // let's add this to our (global) sum
   sum += the_square;
 
-  // now we also tabulate some (meaningless) statistics
   if (number % 2 == 1) {
-    // how many of our numbers were odd?
     odd++;
   }
 
-  // what was the smallest one we had to deal with?
   if (number < min) {
     min = number;
   }
 
-  // and what was the biggest one?
   if (number > max) {
     max = number;
   }
@@ -153,7 +128,6 @@ void calculate_square(long number)
 
 int main(int argc, char* argv[])
 {
-  // check and parse command line options
   if (argc < 2 || argc > 3) {
     printf("Usage: sumsq <infile>\n");
     exit(EXIT_FAILURE);
